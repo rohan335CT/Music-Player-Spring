@@ -18,7 +18,6 @@ import java.util.Scanner;
 @RestController
 public class SongsController {
     private List<SongInformation> songList = new ArrayList<>();
-    private SongInformation songInformation;
 
     @PostMapping("/add-songs")
     public  void addSong(@RequestBody SongInformation songInformation) {
@@ -35,7 +34,7 @@ public class SongsController {
     }
 
     @GetMapping("/csv-playlist")
-    public void csvPlaylist() {
+    public void getCsv() {
         System.out.println("Reading from CSV file");
         Scanner sc = null;
         try {
@@ -58,6 +57,13 @@ public class SongsController {
         String[][] data = {
                 {songInformation.getSongName(), songInformation.getSongArtist()}
         };
+
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < data[i].length; j++) {
+                System.out.println(data[i][j]);
+            }
+
+        }
 
         FileWriter writer = null;
         try {
